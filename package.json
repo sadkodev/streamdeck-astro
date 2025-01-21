@@ -1,14 +1,18 @@
 {
-  "name": "books-kids",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^5.1.7"
-  }
+	"name": "books-kids",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/tailwind": "5.1.4",
+		"astro": "5.1.7",
+		"astro-useragent": "2.2.0",
+		"prettier-plugin-astro": "0.14.1",
+		"tailwindcss": "3.4.17"
+	}
 }
