@@ -1,18 +1,23 @@
 {
-	"name": "books-kids",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/tailwind": "5.1.4",
-		"astro": "5.1.7",
-		"astro-useragent": "2.2.0",
-		"prettier-plugin-astro": "0.14.1",
-		"tailwindcss": "3.4.17"
-	}
+  "name": "homekids",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "9.0.2",
+    "@astrojs/tailwind": "5.1.4",
+    "astro": "5.1.7",
+    "tailwindcss": "3.4.17",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "0.14.1",
+    "prettier": "3.4.2"
+  }
 }
