@@ -1,5 +1,14 @@
 ---
+import { useUserAgent } from '@/utils/useragent'
 import Layout from '../layouts/Layout.astro'
+
+const userAgent = useUserAgent(Astro.request.headers.get('user-agent'))
+
+const not_supported = userAgent.isMobile || userAgent.isTablet
+
+if (not_supported) {
+  return Astro.redirect('/not_supported')
+}
 ---
 
 <Layout>
