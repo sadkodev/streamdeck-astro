@@ -1,7 +1,21 @@
 {
-	"name": "homekids",
+	"name": "streamdeck-astro",
 	"type": "module",
 	"version": "0.0.1",
+	"private": true,
+	"description": "Streamdeck Astro",
+	"keywords": ["astro", "streamdeck"],
+	"author": "Sadkodev",
+	"license": "MIT",
+	"homepage": "https://github.com/sadkodev/streamdeck-astro",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sadkodev/streamdeck-astro.git"
+	},
+	"bugs": {
+		"url": "https://github.com/sadkodev/streamdeck-astro/issues"
+	},
+	"email": "sadkodev@gduck.com",
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
