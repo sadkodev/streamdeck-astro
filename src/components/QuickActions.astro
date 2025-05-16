@@ -1,0 +1,187 @@
+---
+import Button from '@components/Buttons.astro'
+
+import IconSettings from '@components/icons/IconSettings.astro'
+import IconEmpty from '@components/icons/IconEmpty.astro'
+
+import IconPickaxe from '@components/icons/IconPickaxe.astro'
+import IconPlus from '@components/icons/IconPlus.astro'
+import IconSearch from '@components/icons/IconSearch.astro'
+import IconStream from '@components/icons/IconStream.astro'
+import IconStopStream from '@components/icons/IconStopStream.astro'
+import IconMic from '@components/icons/IconMic.astro'
+import IconStopMic from '@components/icons/IconStopMic.astro'
+import IconAudio from '@components/icons/IconAudio.astro'
+import IconStopAudio from '@components/icons/IconStopAudio.astro'
+import IconMute from '@components/icons/IconMute.astro'
+
+const iconMap: any = {
+  IconSettings: IconSettings,
+  IconEmpty: IconEmpty,
+  IconPickaxe: IconPickaxe,
+  IconPlus: IconPlus,
+  IconSearch: IconSearch,
+  IconStream: IconStream,
+  IconStopStream: IconStopStream,
+  IconMic: IconMic,
+  IconStopMic: IconStopMic,
+  IconAudio: IconAudio,
+  IconStopAudio: IconStopAudio,
+  IconMute: IconMute,
+}
+
+const configuredButtons: any = {
+  '0': {
+    type: 'settings',
+    id: 'btn-0',
+    params: {
+      label: 'Settings',
+      name: 'settings',
+      icon: 'IconSettings',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+  '1': {
+    type: 'startStream',
+    id: 'btn-1',
+    params: {
+      label: 'Start Stream',
+      name: 'startStream',
+      icon: 'IconStream',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+  '2': {
+    type: 'stopStream',
+    id: 'btn-2',
+    params: {
+      label: 'Stop Stream',
+      name: 'stopStream',
+      icon: 'IconStopStream',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+  '3': {
+    type: 'startMic',
+    id: 'btn-3',
+    params: {
+      label: 'Start Mic',
+      name: 'startMic',
+      icon: 'IconMic',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+  '4': {
+    type: 'stopMic',
+    id: 'btn-4',
+    params: {
+      label: 'Stop Mic',
+      name: 'stopMic',
+      icon: 'IconStopMic',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+  '5': {
+    type: 'startAudio',
+    id: 'btn-5',
+    params: {
+      label: 'Start Audio',
+      name: 'startAudio',
+      icon: 'IconAudio',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+  '6': {
+    type: 'stopAudio',
+    id: 'btn-6',
+    params: {
+      label: 'Stop Audio',
+      name: 'stopAudio',
+      icon: 'IconStopAudio',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+  '7': {
+    type: 'toggleMute',
+    id: 'btn-7',
+    params: {
+      label: 'Toggle Mute',
+      name: 'toggleMute',
+      icon: 'IconMute',
+      empty: false,
+      system: {
+        disabled: false,
+      },
+    },
+  },
+}
+
+const createEmptyButton = (index: number) => ({
+  type: 'empty',
+  id: `btn-${index}`,
+  params: {
+    label: `Button ${index + 1}`,
+    name: `empty_${index}`,
+    icon: 'IconEmpty',
+    empty: true,
+    system: {
+      disabled: false,
+    },
+  },
+})
+
+const totalButtons = 4 * 8
+const buttons = Array(totalButtons)
+  .fill(null)
+  .map((_, index) => {
+    if (configuredButtons[index]) {
+      // Assuming configuredButtons is an array or object
+      return configuredButtons[index]
+    } else {
+      // Assuming createEmptyButton is a function defined elsewhere
+      return createEmptyButton(index)
+    }
+  })
+---
+
+<section class="grid grid-cols-8 gap-4">
+  {
+    buttons.map((button, index) => {
+      const IconComponent = button.params.icon
+        ? iconMap[button.params.icon]
+        : null
+
+      return (
+        <Button data={button} key={button.id}>
+          {IconComponent && (
+            <span slot="top">
+              <IconComponent />
+            </span>
+          )}
+          {button.params.label}
+        </Button>
+      )
+    })
+  }
+</section>
