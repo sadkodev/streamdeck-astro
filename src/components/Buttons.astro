@@ -1,0 +1,91 @@
+---
+const { data } = Astro.props
+
+const baseStyles = [
+  'relative',
+  'flex',
+  'items-center',
+  'justify-center',
+  'flex-col',
+  'gap-2',
+  'px-2',
+  'py-3',
+  'w-full',
+  'h-32',
+  'text-2xl',
+  'font-bold',
+  'rounded-lg',
+  'overflow-hidden',
+  'transition-all',
+  'duration-200',
+  'border',
+  'border-gray-700',
+  'shadow-lg',
+  'focus:outline-none',
+]
+
+const streamDeckEnabled = [
+  ...baseStyles,
+  'text-gray-50',
+  'bg-gradient-to-b',
+  'from-blue-600',
+  'to-blue-700',
+  'hover:scale-[1.02]',
+  'hover:shadow-xl',
+  'active:scale-[0.98]',
+  'active:shadow-inner',
+  'active:brightness-75',
+  'focus:ring-2',
+  'focus:ring-white',
+  'focus:ring-opacity-50',
+]
+
+const streamDeckDisabled = [
+  ...baseStyles,
+  'text-gray-400',
+  'bg-gradient-to-b',
+  'from-gray-700',
+  'to-gray-800',
+  'focus:ring-gray-600',
+]
+
+const buttonClasses =
+  data.empty && data.system.disabled ? streamDeckDisabled : streamDeckEnabled
+
+const getGradientColor = () => {
+  if (data.empty && data.system.disabled) return ''
+
+  // Ejemplo: asignar colores según alguna propiedad
+  const colorMap: any = {
+    stream: 'from-red-600 to-red-700',
+    mic: 'from-blue-600 to-blue-700',
+    audio: 'from-green-600 to-green-700',
+    default: 'from-gray-800 to-gray-700',
+  }
+
+  return colorMap[data.type] || colorMap.default
+}
+
+const gradientColor = getGradientColor()
+---
+
+<astro-button data-action={JSON.stringify(data)}>
+  <button id={data.id} class:list={[buttonClasses, gradientColor]}>
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-white to-transparent opacity-10 rounded-lg"
+    >
+    </div>
+    <div
+      class="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white to-transparent opacity-20 rounded-t-lg"
+    >
+    </div>
+
+    <div class="flex flex-col items-center justify-center relative z-10">
+      <slot name="top" />
+      <span>{data.params.label}</span>
+      <slot name="bottom" />
+    </div>
+  </button>
+</astro-button>
+
+<script src="../client/buttons.ts"></script>
