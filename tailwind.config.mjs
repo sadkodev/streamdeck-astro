@@ -1,23 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	darkMode: "class",
+	darkMode: ["class", "class"],
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		extend: {
 			colors: {
-				primary: {
-					50: "#eff6ff",
-					100: "#dbeafe",
-					200: "#bfdbfe",
-					300: "#93c5fd",
-					400: "#60a5fa",
-					500: "#3b82f6",
-					600: "#2563eb",
-					700: "#1d4ed8",
-					800: "#1e40af",
-					900: "#1e3a8a",
-					950: "#172554",
-				},
+				primary: "#FF0080",
+				secondary: "#0080FF",
+				accent: "#0080FF",
+				background: "#FFFFFF",
+				foreground: "#000000",
+				muted: "#F2F2F2",
+				danger: "#FF0080",
 			},
 		},
 		fontFamily: {
