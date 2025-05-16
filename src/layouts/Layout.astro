@@ -1,5 +1,9 @@
 ---
-import Header from '@components/Header.astro'
+import { useUserAgent } from '@utils/useragent'
+
+const userAgent = useUserAgent(Astro.request.headers.get('user-agent'))
+const title = userAgent.isTablet ? 'TABLET' : 'DESKTOP'
+const widthTablet = 1020
 ---
 
 <!doctype html>
@@ -7,14 +11,32 @@ import Header from '@components/Header.astro'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>HOMEKIDS</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
   </head>
-  <body>
-    <Header />
-    <main class="flex-1 p-4 sm:p-8 lg:p-16">
+  <body class="bg-gray-700">
+    <main class=`bg-gray-600 w-{${widthTablet}px} p-4`>
       <slot />
     </main>
   </body>
 </html>
+
+<style>
+  html,
+  body {
+    touch-action: pan-x pan-y; /* Permite desplazamiento pero limita gestos de zoom */
+  }
+  /* .w-tablet { */
+  /*   width: 1020px; */
+  /* } */
+</style>
+
+<script>
+  // This is the entry point for the client-side JavaScript.
+  // It is only used for the initial hydration of the page.
+</script>
