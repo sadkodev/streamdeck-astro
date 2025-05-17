@@ -27,11 +27,6 @@ export interface ActionPayload {
 	params?: ButtonParams;
 }
 
-/**
- * Represents the result of an action, indicating success or failure,
- * and optionally including a message and data.
- */
-
 export interface ActionResult {
 	success: boolean;
 	message?: string;
