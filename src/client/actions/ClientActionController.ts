@@ -7,9 +7,9 @@ export class ClientActionController {
 	constructor() {
 		this.registry = ActionRegistry.getInstance();
 	}
-
 	public async executeAction(payload: ActionPayload): Promise<ActionResult> {
 		const { type } = payload;
+		console.log(`ClientActionController: Executing action ${type}`);
 
 		if (this.registry.hasAction(type)) {
 			const action = this.registry.getAction(type);
@@ -21,19 +21,26 @@ export class ClientActionController {
 
 		return this.sendToServer(payload);
 	}
+
 	private async sendToServer(payload: ActionPayload): Promise<ActionResult> {
+		console.log(
+			`ClientActionController: Sending action ${payload.type} to server`,
+		);
 		try {
 			const response = await fetch("/api/streamdeck/action", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
+				body: JSON.stringify(payload), // Asegúrate de incluir el payload
 			});
 
 			if (!response.ok) {
-				throw new Error(`Server responded with :${response.status}`);
+				throw new Error(`Server responded with: ${response.status}`);
 			}
-			return await response.json();
+
+			const result = await response.json();
+			return result;
 		} catch (error) {
 			console.error("Error sending action to server:", error);
 			return {
