@@ -13,7 +13,10 @@
 			"@styles/*": ["./src/styles/*"],
 			"@shared/*": ["./src/shared/*"],
 			"@client/*": ["./src/client/*"],
-			"@actions/*": ["./src/actions/*"]
+			"@actions/*": ["./src/actions/*"],
+			"@lib/*": ["./src/lib/*"],
+			"@types/*": ["./src/types/*"],
+			"@server/*": ["./src/server/*"]
 		}
 	}
 }
