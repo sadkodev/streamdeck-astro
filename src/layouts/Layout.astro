@@ -19,8 +19,8 @@ const widthTablet = 1020
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-700">
-    <main class=`bg-gray-600 w-{${widthTablet}px} p-4`>
+  <body class="bg-gray-900">
+    <main class=`bg-gray-800 p-4`>
       <slot />
     </main>
   </body>
@@ -29,14 +29,6 @@ const widthTablet = 1020
 <style>
   html,
   body {
-    touch-action: pan-x pan-y; /* Permite desplazamiento pero limita gestos de zoom */
+    touch-action: pan-x pan-y; /* Allow scrolling but limit zoom gestures */
   }
-  /* .w-tablet { */
-  /*   width: 1020px; */
-  /* } */
 </style>
-
-<script>
-  // This is the entry point for the client-side JavaScript.
-  // It is only used for the initial hydration of the page.
-</script>
