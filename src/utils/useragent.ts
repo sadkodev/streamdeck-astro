@@ -104,7 +104,7 @@ function detectDevice(ua: string) {
 		model: "",
 	};
 
-	// Detectar tablets primero
+	// Detect tablets first
 	if (
 		/ipad/i.test(ua) ||
 		/android(?!.*mobile)/i.test(ua) ||
@@ -112,7 +112,7 @@ function detectDevice(ua: string) {
 	) {
 		device.type = "tablet";
 	}
-	// Luego móviles
+	// Then mobiles
 	else if (
 		/iphone/i.test(ua) ||
 		/android.*mobile/i.test(ua) ||
@@ -120,12 +120,12 @@ function detectDevice(ua: string) {
 	) {
 		device.type = "mobile";
 	}
-	// Por defecto, desktop
+	// By default, desktop
 	else {
 		device.type = "desktop";
 	}
 
-	// Detectar vendor y modelo
+	// Detect vendor and model
 	if (/iphone|ipad/i.test(ua)) {
 		device.vendor = "Apple";
 		device.model = /iphone/i.test(ua) ? "iPhone" : "iPad";
