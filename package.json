@@ -1,37 +1,38 @@
 {
-	"name": "streamdeck-astro",
-	"type": "module",
-	"version": "0.0.1",
-	"private": true,
-	"description": "Streamdeck Astro",
-	"keywords": ["astro", "streamdeck"],
-	"author": "Sadkodev",
-	"license": "MIT",
-	"homepage": "https://github.com/sadkodev/streamdeck-astro",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/sadkodev/streamdeck-astro.git"
-	},
-	"bugs": {
-		"url": "https://github.com/sadkodev/streamdeck-astro/issues"
-	},
-	"email": "sadkodev@gduck.com",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/check": "^0.9.4",
-		"@astrojs/node": "9.0.2",
-		"@astrojs/tailwind": "5.1.4",
-		"astro": "5.1.7",
-		"tailwindcss": "3.4.17",
-		"typescript": "^5.7.3"
-	},
-	"devDependencies": {
-		"prettier-plugin-astro": "0.14.1",
-		"prettier": "3.4.2"
-	}
+  "name": "streamdeck-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Streamdeck Astro",
+  "keywords": ["astro", "streamdeck"],
+  "author": "Sadkodev",
+  "license": "MIT",
+  "homepage": "https://github.com/sadkodev/streamdeck-astro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sadkodev/streamdeck-astro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sadkodev/streamdeck-astro/issues"
+  },
+  "email": "sadkodev@gduck.com",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "9.0.2",
+    "@astrojs/tailwind": "5.1.4",
+    "ansi-colors": "^4.1.3",
+    "astro": "5.1.7",
+    "tailwindcss": "3.4.17",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "0.14.1",
+    "prettier": "3.4.2"
+  }
 }
