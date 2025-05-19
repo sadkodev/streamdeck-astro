@@ -15,6 +15,8 @@ import IconAudio from '@components/icons/IconAudio.astro'
 import IconStopAudio from '@components/icons/IconStopAudio.astro'
 import IconMute from '@components/icons/IconMute.astro'
 
+const sizeIcon = 48
+
 const iconMap: any = {
   IconSettings: IconSettings,
   IconEmpty: IconEmpty,
@@ -32,11 +34,11 @@ const iconMap: any = {
 
 const configuredButtons: any = {
   '0': {
-    type: 'settings',
+    type: 'toggleFullScreen',
     id: 'btn-0',
     params: {
-      label: 'Settings',
-      name: 'settings',
+      label: 'fullscreen',
+      name: 'fullscreen',
       icon: 'IconSettings',
       empty: false,
       system: {
@@ -176,7 +178,7 @@ const buttons = Array(totalButtons)
         <Button data={button} key={button.id}>
           {IconComponent && (
             <span slot="top">
-              <IconComponent />
+              <IconComponent size={sizeIcon} />
             </span>
           )}
           {button.params.label}
@@ -184,4 +186,5 @@ const buttons = Array(totalButtons)
       )
     })
   }
+  <div></div>
 </section>
