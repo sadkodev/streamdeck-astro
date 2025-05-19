@@ -1,23 +1,20 @@
 import { ClientActionController } from "@client/actions/ClientActionController";
-import type {
-	ActionPayload,
-	ActionType,
-	DataButttonAction,
-} from "@shared/types";
+import type { ActionPayload, ActionType } from "@shared/types";
 import { ActionRegistry } from "@shared/actions/ActionRegistry";
 
 // Import implmentations of actions
 import { ToggleMuteAction } from "@client/actions/implementations/ToggleMuteAction";
+import { ToggleFullScreenAction } from "@client/actions/implementations/ToggleFullScreenAction";
 
 // Register actions disponible on the client
 const registry = ActionRegistry.getInstance();
 registry.register("toggleMute", new ToggleMuteAction());
+registry.register("toggleFullScreen", new ToggleFullScreenAction());
 
 // create controllers
-const actionController = new ClientActionController();
+const clientController = new ClientActionController();
 
 class AstroButton extends HTMLElement {
-	//FIX: Security issue
 	data: ActionPayload | null = null;
 	constructor() {
 		super();
@@ -51,10 +48,11 @@ class AstroButton extends HTMLElement {
 				params: this.data.params,
 			};
 
-			const result = await actionController.executeAction(payload);
+			const result = await clientController.executeAction(payload);
 
 			if (result.success) {
 				console.log(`Action ${payload.type} executed successfully:`);
+				console.log(`This is the client result:`, result);
 				this.updateVisualState(result.data);
 			} else {
 				console.error(`Action ${payload.type} failed:`, result.message);
