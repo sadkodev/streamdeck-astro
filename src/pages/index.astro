@@ -1,28 +1,28 @@
 ---
-import Layout from '@layouts/Layout.astro'
-import QuickActions from '@components/QuickActions.astro'
+import Layout from '@layouts/Layout.astro';
+import QuickActions from '@components/QuickActions.astro';
 
-import { useUserAgent } from '@/utils/useragent'
+import { useUserAgent } from '@/utils/useragent';
 
 // Check if the current environment is development
 if (import.meta.env.NODE_ENV === 'production') {
-  // Log 'Development' to the console (likely for debugging)
-  console.log('Production')
+	// Log 'Development' to the console (likely for debugging)
+	console.log('Production');
 
-  // Get the user agent string from the request headers
-  const userAgent = useUserAgent(Astro.request.headers.get('user-agent'))
+	// Get the user agent string from the request headers
+	const userAgent = useUserAgent(Astro.request.headers.get('user-agent'));
 
-  // Determine if the user agent is desktop or mobile
-  // This condition is named 'not_supported', suggesting desktop/mobile might be explicitly disallowed in development
-  const not_supported = userAgent.isDesktop || userAgent.isMobile
+	// Determine if the user agent is desktop or mobile
+	// This condition is named 'not_supported', suggesting desktop/mobile might be explicitly disallowed in development
+	const not_supported = userAgent.isDesktop || userAgent.isMobile;
 
-  // If the user agent is desktop or mobile, redirect the user to the '/not_supported' page
-  if (not_supported) {
-    return Astro.redirect('/not_supported')
-  }
+	// If the user agent is desktop or mobile, redirect the user to the '/not_supported' page
+	if (not_supported) {
+		return Astro.redirect('/not_supported');
+	}
 }
 ---
 
 <Layout>
-  <QuickActions />
+	<QuickActions />
 </Layout>
