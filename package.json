@@ -17,22 +17,43 @@
   },
   "email": "sadkodev@gduck.com",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "astro": "bunx astro",
+    "build": "bunx astro check && bun run tsc --noEmit && bunx astro build",
+    "check": "bunx astro check && bun run format:check",
+    "dev": "bunx astro dev",
+    "prepare": "husky install",
+    "preview": "bunx astro preview",
+    "start": "bunx astro dev",
+    "lint": "bunx eslint --cache .",
+    "lint:fix": "bunx eslint --cache --fix .",
+    "lint:fast": "bun run eslint --cache .",
+    "format:check": "bunx prettier --cache --check --plugin-search-dir=. .",
+    "format": "bunx prettier --cache --write --plugin-search-dir=. .",
+    "check:all": "bun run lint && bun run format:check && bunx astro check && bun run tsc --noEmit",
+    "typecheck": "bun run --bun tsc --noEmit"
   },
-  "dependencies": {
-    "@astrojs/check": "^0.9.4",
+  "dependencies": {},
+  "@astrojs/check": "^0.9.4",
+  "devDependencies": {
     "@astrojs/node": "9.0.2",
     "@astrojs/tailwind": "5.1.4",
+    "@eslint/js": "^8.56.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "ansi-colors": "^4.1.3",
     "astro": "5.1.7",
-    "tailwindcss": "3.4.17",
-    "typescript": "^5.7.3"
-  },
-  "devDependencies": {
+    "astro-eslint-parser": "^1.2.2",
+    "eslint": "^9.27.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "globals": "^16.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^16.0.0",
+    "prettier": "3.4.2",
     "prettier-plugin-astro": "0.14.1",
-    "prettier": "3.4.2"
+    "tailwindcss": "3.4.17",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.19.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,astro}": ["bunx eslint --fix", "bunx prettier --write"]
   }
 }
