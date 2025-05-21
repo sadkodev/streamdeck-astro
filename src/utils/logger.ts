@@ -1,9 +1,14 @@
-import clr from "ansi-colors";
+import clr from 'ansi-colors';
 
-type LogLevel = "debug" | "info" | "warn" | "error";
+type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
 /**
- * Log message object containing level, message, and timestamp.
+ * Log levels
+ *
+ * debug - for debugging purposes
+ * info - for information
+ * warn - for warnings
+ * error - for errors
  */
 type LogMessage = {
 	level: LogLevel;
@@ -11,7 +16,7 @@ type LogMessage = {
 	timestamp: string;
 };
 
-function logger(message: string, level: LogLevel = "info") {
+function logger(message: string, level: LogLevel = 'info') {
 	const logMessage: LogMessage = {
 		level,
 		message,
@@ -19,20 +24,21 @@ function logger(message: string, level: LogLevel = "info") {
 	};
 
 	switch (level) {
-		case "debug":
+		case 'debug':
 			console.log(clr.blue(logMessage.timestamp), logMessage.message);
 			break;
-		case "info":
+		case 'info':
 			console.log(clr.green(logMessage.timestamp), logMessage.message);
 			break;
-		case "warn":
+		case 'warn':
 			console.log(clr.yellow(logMessage.timestamp), logMessage.message);
 			break;
-		case "error":
+		case 'error':
 			console.log(clr.red(logMessage.timestamp), logMessage.message);
 			break;
 		default:
 			console.log(logMessage.message);
+			break;
 	}
 }
 
