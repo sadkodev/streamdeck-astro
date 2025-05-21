@@ -1,92 +1,86 @@
 ---
-const { data } = Astro.props
+const { data } = Astro.props;
 
 const baseStyles = [
-  'relative',
-  'flex',
-  'items-center',
-  'justify-center',
-  'flex-col',
-  'gap-4',
-  'py-3',
-  'w-full',
-  'h-full',
-  'text-sm',
-  'font-bold',
-  'rounded-2xl',
-  'overflow-hidden',
-  'transition-all',
-  'duration-200',
-  'border',
-  'border-gray-600',
-  'shadow-lg',
-  'focus:outline-none',
-]
+	'relative',
+	'flex',
+	'items-center',
+	'justify-center',
+	'flex-col',
+	'gap-4',
+	'py-3',
+	'w-full',
+	'h-full',
+	'text-sm',
+	'font-bold',
+	'rounded-2xl',
+	'overflow-hidden',
+	'transition-all',
+	'duration-200',
+	'border',
+	'border-gray-600',
+	'shadow-lg',
+	'focus:outline-none',
+];
 
 const streamDeckEnabled = [
-  ...baseStyles,
-  'text-gray-50',
-  'bg-gradient-to-b',
-  'from-blue-600',
-  'to-blue-700',
-  'hover:scale-[1.02]',
-  'hover:shadow-xl',
-  'active:scale-[0.98]',
-  'active:shadow-inner',
-  'active:brightness-75',
-  'focus:ring-2',
-  'focus:ring-white',
-  'focus:ring-opacity-50',
-]
+	...baseStyles,
+	'text-gray-50',
+	'bg-gradient-to-b',
+	'from-blue-600',
+	'to-blue-700',
+	'hover:scale-[1.02]',
+	'hover:shadow-xl',
+	'active:scale-[0.98]',
+	'active:shadow-inner',
+	'active:brightness-75',
+	'focus:ring-2',
+	'focus:ring-white',
+	'focus:ring-opacity-50',
+];
 
 const streamDeckDisabled = [
-  ...baseStyles,
-  'text-gray-400',
-  'bg-gradient-to-b',
-  'from-gray-700',
-  'to-gray-800',
-  'focus:ring-gray-600',
-]
+	...baseStyles,
+	'text-gray-400',
+	'bg-gradient-to-b',
+	'from-gray-700',
+	'to-gray-800',
+	'focus:ring-gray-600',
+];
 
-const buttonClasses =
-  data.empty && data.system.disabled ? streamDeckDisabled : streamDeckEnabled
+const buttonClasses = data.empty && data.system.disabled ? streamDeckDisabled : streamDeckEnabled;
 
 const getGradientColor = () => {
-  if (data.empty && data.system.disabled) return ''
+	if (data.empty && data.system.disabled) return '';
 
-  // Ejemplo: asignar colores según alguna propiedad
-  const colorMap: any = {
-    stream: 'from-red-600 to-red-800',
-    mic: 'from-blue-600 to-blue-800',
-    audio: 'from-green-600 to-green-800',
-    toggleFullScreen: 'from-yellow-600 to-yellow-800',
-    default: 'from-gray-600 to-gray-800',
-    empty: 'from-gray-600 to-gray-800 opacity-50',
-  }
+	// Ejemplo: asignar colores según alguna propiedad
+	const colorMap: any = {
+		stream: 'from-red-600 to-red-800',
+		mic: 'from-blue-600 to-blue-800',
+		audio: 'from-green-600 to-green-800',
+		toggleFullScreen: 'from-yellow-600 to-yellow-800',
+		default: 'from-gray-600 to-gray-800',
+		empty: 'from-gray-600 to-gray-800 opacity-50',
+	};
 
-  return colorMap[data.type] || colorMap.default
-}
+	return colorMap[data.type] || colorMap.default;
+};
 
-const gradientColor = getGradientColor()
+const gradientColor = getGradientColor();
 ---
 
 <astro-button data-action={JSON.stringify(data)}>
-  <button id={data.id} class:list={[buttonClasses, gradientColor]}>
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-white to-transparent opacity-10 rounded-lg"
-    >
-    </div>
-    <div
-      class="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white to-transparent opacity-20 rounded-t-lg"
-    >
-    </div>
+	<button id={data.id} class:list={[buttonClasses, gradientColor]}>
+		<div class="absolute inset-0 bg-gradient-to-b from-white to-transparent opacity-10 rounded-lg"></div>
+		<div class="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white to-transparent opacity-20 rounded-t-lg">
+		</div>
 
-    <div class="flex flex-col items-center justify-center relative z-10">
-      <slot name="top" />
-      <span>{data.params.label}</span>
-      <slot name="bottom" />
-    </div>
-  </button>
+		<div class="flex flex-col items-center justify-center relative z-10">
+			<slot name="top" />
+			<span>{data.params.label}</span>
+			<slot name="bottom" />
+		</div>
+	</button>
 </astro-button>
 
 <script src="../client/buttons.ts"></script>
