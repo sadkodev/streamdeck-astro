@@ -1,5 +1,5 @@
-import type { ActionPayload, ActionResult, ActionType } from "@shared/types";
-import { ActionRegistry } from "@shared/actions/ActionRegistry";
+import type { ActionPayload, ActionResult } from '@shared/types';
+import { ActionRegistry } from '@shared/actions/ActionRegistry';
 
 export class ClientActionController {
 	private registry: ActionRegistry;
@@ -23,14 +23,12 @@ export class ClientActionController {
 	}
 
 	private async sendToServer(payload: ActionPayload): Promise<ActionResult> {
-		console.log(
-			`ClientActionController: Sending action ${payload.type} to server`,
-		);
+		console.log(`ClientActionController: Sending action ${payload.type} to server`);
 		try {
-			const response = await fetch("/api/streamdeck/action", {
-				method: "POST",
+			const response = await fetch('/api/streamdeck/action', {
+				method: 'POST',
 				headers: {
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(payload), // Asegúrate de incluir el payload
 			});
@@ -42,11 +40,10 @@ export class ClientActionController {
 			const result = await response.json();
 			return result;
 		} catch (error) {
-			console.error("Error sending action to server:", error);
+			console.error('Error sending action to server:', error);
 			return {
 				success: false,
-				message:
-					error instanceof Error ? error.message : "Unknown error occurred",
+				message: error instanceof Error ? error.message : 'Unknown error occurred',
 			};
 		}
 	}
