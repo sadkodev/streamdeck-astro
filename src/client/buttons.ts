@@ -1,24 +1,21 @@
-import { ClientActionController } from "@client/actions/ClientActionController";
-import type { ActionPayload, ActionType } from "@shared/types";
-import { ActionRegistry } from "@shared/actions/ActionRegistry";
+import { ClientActionController } from '@client/actions/ClientActionController';
+import type { ActionPayload, ActionType } from '@shared/types';
+import { ActionRegistry } from '@shared/actions/ActionRegistry';
 
-// Import implmentations of actions
-import { ToggleMuteAction } from "@client/actions/implementations/ToggleMuteAction";
-import { ToggleFullScreenAction } from "@client/actions/implementations/ToggleFullScreenAction";
+import { ToggleMuteAction } from '@client/actions/implementations/ToggleMuteAction';
+import { ToggleFullScreenAction } from '@client/actions/implementations/ToggleFullScreenAction';
 
-// Register actions disponible on the client
 const registry = ActionRegistry.getInstance();
-registry.register("toggleMute", new ToggleMuteAction());
-registry.register("toggleFullScreen", new ToggleFullScreenAction());
+registry.register('toggleMute', new ToggleMuteAction());
+registry.register('toggleFullScreen', new ToggleFullScreenAction());
 
-// create controllers
 const clientController = new ClientActionController();
 
 class AstroButton extends HTMLElement {
 	data: ActionPayload | null = null;
 	constructor() {
 		super();
-		this.addEventListener("click", this.handleClick.bind(this));
+		this.addEventListener('click', this.handleClick.bind(this));
 	}
 
 	connectedCallback() {
@@ -26,18 +23,14 @@ class AstroButton extends HTMLElement {
 		try {
 			this.data = raw ? JSON.parse(raw) : null;
 		} catch (error) {
-			console.error("Failed to parse data-action attribute", error);
+			console.error('Failed to parse data-action attribute', error);
 			this.data = null;
 		}
 	}
 
 	async handleClick() {
-		if (
-			!this.data ||
-			this.data.params?.empty ||
-			(this.data.params?.system && this.data.params?.system.disabled)
-		) {
-			console.log("Button is empty or disabled");
+		if (!this.data || this.data.params?.empty || (this.data.params?.system && this.data.params?.system.disabled)) {
+			console.log('Button is empty or disabled');
 			return;
 		}
 
@@ -58,14 +51,14 @@ class AstroButton extends HTMLElement {
 				console.error(`Action ${payload.type} failed:`, result.message);
 			}
 		} catch (error) {
-			console.error("Error executing button action:", error);
+			console.error('Error executing button action:', error);
 		}
 	}
 	updateVisualState(data: any) {
 		if (data && data.active !== undefined) {
-			data.active ? this.classList.add("test") : this.classList.remove("test");
+			data.active ? this.classList.add('test') : this.classList.remove('test');
 		}
 	}
 }
 
-customElements.define("astro-button", AstroButton);
+customElements.define('astro-button', AstroButton);
